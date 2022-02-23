@@ -86,6 +86,7 @@
     "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.5.0",
     "@paulrberg/contracts": "^3.7.0"
   }
 }
