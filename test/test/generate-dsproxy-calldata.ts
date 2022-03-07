@@ -970,6 +970,253 @@ describe("Deposit Collateral with signature", function () {
         type: "function",
       },
     ];
+    const ReckContractAbi = [
+      {
+        inputs: [
+          { internalType: "string", name: "name_", type: "string" },
+          { internalType: "string", name: "symbol_", type: "string" },
+          { internalType: "uint8", name: "decimals_", type: "uint8" },
+        ],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        inputs: [
+          { internalType: "uint8", name: "v", type: "uint8" },
+          { internalType: "bytes32", name: "r", type: "bytes32" },
+          { internalType: "bytes32", name: "s", type: "bytes32" },
+        ],
+        name: "Erc20Permit__InvalidSignature",
+        type: "error",
+      },
+      { inputs: [], name: "Erc20Permit__OwnerZeroAddress", type: "error" },
+      {
+        inputs: [{ internalType: "uint256", name: "deadline", type: "uint256" }],
+        name: "Erc20Permit__PermitExpired",
+        type: "error",
+      },
+      { inputs: [], name: "Erc20Permit__RecoveredOwnerZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20Permit__SpenderZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20__ApproveOwnerZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20__ApproveSpenderZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20__BurnZeroAddress", type: "error" },
+      {
+        inputs: [
+          { internalType: "uint256", name: "allowance", type: "uint256" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "Erc20__InsufficientAllowance",
+        type: "error",
+      },
+      {
+        inputs: [
+          { internalType: "uint256", name: "senderBalance", type: "uint256" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "Erc20__InsufficientBalance",
+        type: "error",
+      },
+      { inputs: [], name: "Erc20__MintZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20__TransferRecipientZeroAddress", type: "error" },
+      { inputs: [], name: "Erc20__TransferSenderZeroAddress", type: "error" },
+      {
+        anonymous: false,
+        inputs: [
+          { indexed: true, internalType: "address", name: "owner", type: "address" },
+          { indexed: true, internalType: "address", name: "spender", type: "address" },
+          { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "Approval",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          { indexed: true, internalType: "address", name: "holder", type: "address" },
+          { indexed: false, internalType: "uint256", name: "burnAmount", type: "uint256" },
+        ],
+        name: "Burn",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          { indexed: true, internalType: "address", name: "beneficiary", type: "address" },
+          { indexed: false, internalType: "uint256", name: "mintAmount", type: "uint256" },
+        ],
+        name: "Mint",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          { indexed: true, internalType: "address", name: "from", type: "address" },
+          { indexed: true, internalType: "address", name: "to", type: "address" },
+          { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "Transfer",
+        type: "event",
+      },
+      {
+        inputs: [],
+        name: "DOMAIN_SEPARATOR",
+        outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "PERMIT_TYPEHASH",
+        outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "holder", type: "address" },
+          { internalType: "uint256", name: "burnAmount", type: "uint256" },
+        ],
+        name: "__godMode_burn",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "beneficiary", type: "address" },
+          { internalType: "uint256", name: "mintAmount", type: "uint256" },
+        ],
+        name: "__godMode_mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "owner", type: "address" },
+          { internalType: "address", name: "spender", type: "address" },
+        ],
+        name: "allowance",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "spender", type: "address" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "approve",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [{ internalType: "address", name: "account", type: "address" }],
+        name: "balanceOf",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "decimals",
+        outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "spender", type: "address" },
+          { internalType: "uint256", name: "subtractedAmount", type: "uint256" },
+        ],
+        name: "decreaseAllowance",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "spender", type: "address" },
+          { internalType: "uint256", name: "addedAmount", type: "uint256" },
+        ],
+        name: "increaseAllowance",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "name",
+        outputs: [{ internalType: "string", name: "", type: "string" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [{ internalType: "address", name: "", type: "address" }],
+        name: "nonces",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "owner", type: "address" },
+          { internalType: "address", name: "spender", type: "address" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+          { internalType: "uint256", name: "deadline", type: "uint256" },
+          { internalType: "uint8", name: "v", type: "uint8" },
+          { internalType: "bytes32", name: "r", type: "bytes32" },
+          { internalType: "bytes32", name: "s", type: "bytes32" },
+        ],
+        name: "permit",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "symbol",
+        outputs: [{ internalType: "string", name: "", type: "string" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalSupply",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "recipient", type: "address" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "transfer",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          { internalType: "address", name: "sender", type: "address" },
+          { internalType: "address", name: "recipient", type: "address" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "transferFrom",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "version",
+        outputs: [{ internalType: "string", name: "", type: "string" }],
+        stateMutability: "view",
+        type: "function",
+      },
+    ];
 
     const defaultProvider = ethers.getDefaultProvider("rinkeby");
 
@@ -987,30 +1234,24 @@ describe("Deposit Collateral with signature", function () {
 
     wallet = wallet.connect(provider);
 
-    wallet
-      .getAddress()
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // wallet
+    //   .getAddress()
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
 
-    const result = await signERC2612Permit(
-      wallet,
-      "0xEdBF2bCA5940CCe624b26f75Aaf3265bbB134831",
-      "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
-      "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
-      "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-    );
-
-    console.log("result", result);
+    const REKTAddress = "0xbdcCf1C20Bd7F9463C4C3A4a873Aa286448485C3";
+    const rectContract = new ethers.Contract(REKTAddress, ReckContractAbi, wallet);
 
     const targetContractAddress = "0xAa24191f69a4816b7C6a4e322640288390b0c09E";
     const targetContract = new ethers.Contract(targetContractAddress, TargetContractAbi, defaultProvider);
     const balanceSheet = "0x00f5BFC75c9E9e55F2d8FF67403B70B036d0B4ea";
     const collateralAddress = "0xf0Db9700A370693D258D28e177cE6269A1c9f502";
     const depositAmount = USDC("1000");
+    const sellHtokenAmount = hUSDC("10");
     const collateralContract = new ethers.Contract(collateralAddress, CollateralAbi, defaultProvider);
 
     const hifiPool = "0xCbda2Ad0fd86133b1d8613FD36FeDef38Af029Ba";
@@ -1018,109 +1259,132 @@ describe("Deposit Collateral with signature", function () {
     const hToken = "0xE8f7c7d9d7Fed4F3282f10e8db4c3B370db12df5";
     const underlyingOffered = USDC("10");
     const maxHTokenRequired = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
-    const hTokenIn = hUSDC("9");
-    const collateralDigest = getPermitDigest(
-      await collateralContract.name(),
-      collateralAddress,
-      4,
-      {
-        owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
-        spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
-        value: depositAmount,
-      },
-      bnify(await collateralContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")),
-      MAX,
-    );
-    console.log("collateralDigest", collateralDigest);
-    const collateralSig = sign(collateralDigest, userPrivateKey);
-    console.log("collateralSig: ", collateralSig);
+    const hTokenIn = hUSDC("900000000000000000");
 
-    const deadline = MAX;
-    const calldata = targetContract.interface.encodeFunctionData("depositCollateralWithSignature", [
-      balanceSheet,
-      collateralAddress,
-      depositAmount,
-      deadline,
-      collateralSig,
-    ]);
-    console.log("calldata: ", calldata);
+    const tx = await rectContract.__godMode_mint("0xb1e020029EBAe05673Fc9166E12A8FC603da976C", hTokenIn);
+
+    await tx.wait();
+
+    console.log("here", tx);
+    // const result = await signERC2612Permit(
+    //   wallet,
+    //   "0xe5D34DA0E73aEbffd92C82E3Ae61EF9F6B192B8A",
+    //   "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
+    //   "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
+    //   sellHtokenAmount.toString(),
+    // );
+
+    // console.log("result", result);
+    // const collateralDigest = getPermitDigest(
+    //   "Hifi USDC (2022-06-01)",
+    //   "0xe5D34DA0E73aEbffd92C82E3Ae61EF9F6B192B8A",
+    //   4,
+    //   {
+    //     owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
+    //     spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
+    //     value: sellHtokenAmount,
+    //   },
+    //   0,
+    //   MAX,
+    // );
+
+    // const collateralSig = sign(collateralDigest, userPrivateKey);
+    // //console.log("collateralDigest", collateralDigest);
+    // console.log("collateralSig: ", collateralSig);
+    // // console.log(
+    // //   "await collateralContract.name()",
+    // //   await collateralContract.name(),
+    // //   "collateralAddress:",
+    // //   collateralAddress,
+    // //   "depositAmount:",
+    // //   depositAmount,
+    // // );
+
+    // const deadline = MAX;
+
+    // const calldata = targetContract.interface.encodeFunctionData("addLiquidity", [
+    //   "0x2B9511dc973E1851e5DF75ac6cd8731Bd4057Eef",
+    //   depositAmount,
+    //   depositAmount,
+    // ]);
+    // console.log("calldata: ", calldata);
 
     // get Htoken
 
-    const calldataBorrowHToken = targetContract.interface.encodeFunctionData("borrowHToken", [
-      balanceSheet,
-      hToken,
-      "100000000000000000000",
-    ]);
+    // const calldataBorrowHToken = targetContract.interface.encodeFunctionData("borrowHToken", [
+    //   balanceSheet,
+    //   hToken,
+    //   "100000000000000000000",
+    // ]);
 
-    console.log("calldataBorrowHToken", calldataBorrowHToken);
+    // console.log("calldataBorrowHToken", calldataBorrowHToken);
 
-    // AddLiquidity
-    const hTokenContract = new ethers.Contract(hToken, CollateralAbi, defaultProvider);
-    const hTokenDigest = getPermitDigest(
-      "HiFi USDC Permit",
-      hToken,
-      4,
-      {
-        owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
-        spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
-        value: hTokenIn,
-      },
-      bnify(await hTokenContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")),
-      MAX,
-    );
-    console.log("nounce htoke", bnify(await hTokenContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")));
-    console.log("hTokenDigest", hTokenDigest);
-    const signatureHToken = sign(hTokenDigest, userPrivateKey);
+    // // AddLiquidity
+    // const hTokenContract = new ethers.Contract(hToken, CollateralAbi, defaultProvider);
+    // const hTokenDigest = getPermitDigest(
+    //   "HiFi USDC Permit",
+    //   hToken,
+    //   4,
+    //   {
+    //     owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
+    //     spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
+    //     value: hTokenIn,
+    //   },
+    //   bnify(await hTokenContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")),
+    //   MAX,
+    // );
+    // console.log("nounce htoke", bnify(await hTokenContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")));
+    // console.log("hTokenDigest", hTokenDigest);
+    // const signatureHToken = sign(hTokenDigest, userPrivateKey);
 
-    const underlyingDigest = getPermitDigest(
-      "USDC",
-      underlying,
-      4,
-      {
-        owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
-        spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
-        value: underlyingOffered,
-      },
-      bnify(await collateralContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")),
-      MAX,
-    );
-    console.log("hTokenDigest", underlyingDigest);
-    const signatureUnderlying = sign(underlyingDigest, userPrivateKey);
+    // const underlyingDigest = getPermitDigest(
+    //   "USDC",
+    //   underlying,
+    //   4,
+    //   {
+    //     owner: "0xb1e020029EBAe05673Fc9166E12A8FC603da976C",
+    //     spender: "0xC7822280E63c0B7199e8606Ef778331905Ccf000",
+    //     value: underlyingOffered,
+    //   },
+    //   bnify(await collateralContract.nonces("0xb1e020029EBAe05673Fc9166E12A8FC603da976C")),
+    //   MAX,
+    // );
+    // console.log("hTokenDigest", underlyingDigest);
+    // const signatureUnderlying = sign(underlyingDigest, userPrivateKey);
 
-    const calldataAddLiquidityWithSignature = targetContract.interface.encodeFunctionData("addLiquidityWithSignature", [
-      hifiPool,
-      underlying,
-      underlyingOffered,
-      maxHTokenRequired,
-      deadline,
-      signatureHToken,
-      signatureUnderlying,
-    ]);
+    // const calldataAddLiquidityWithSignature = targetContract.interface.encodeFunctionData("addLiquidityWithSignature", [
+    //   hifiPool,
+    //   underlying,
+    //   underlyingOffered,
+    //   maxHTokenRequired,
+    //   deadline,
+    //   signatureHToken,
+    //   signatureUnderlying,
+    // ]);
 
-    console.log("calldataAddLiquidityWithSignature", calldataAddLiquidityWithSignature);
+    // console.log("calldataAddLiquidityWithSignature", calldataAddLiquidityWithSignature);
 
-    //sellHTokenWithSignature
+    // //sellHTokenWithSignature
 
-    const minUnderlyingOut = 0;
-    const calldatasellHTokenWithSignature = targetContract.interface.encodeFunctionData("sellHTokenWithSignature", [
-      hifiPool,
-      hTokenIn,
-      minUnderlyingOut,
-      deadline,
-      signatureHToken,
-    ]);
+    // const minUnderlyingOut = 0;
+    // const calldatasellHTokenWithSignature = targetContract.interface.encodeFunctionData("sellHTokenWithSignature", [
+    //   hifiPool,
+    //   hTokenIn,
+    //   minUnderlyingOut,
+    //   deadline,
+    //   signatureHToken,
+    // ]);
 
-    console.log("calldatasellHTokenWithSignature", calldatasellHTokenWithSignature);
+    // console.log("calldatasellHTokenWithSignature", calldatasellHTokenWithSignature);
 
-    // borrowHTokenAndAddLiquidityWithSignature
-    const maxBorrowAmount = MAX;
-    const calldataborrowHTokenAndAddLiquidityWithSignature = targetContract.interface.encodeFunctionData(
-      "borrowHTokenAndAddLiquidityWithSignature",
-      [balanceSheet, hifiPool, underlying, maxBorrowAmount, underlyingOffered, deadline, signatureUnderlying],
-    );
+    // // borrowHTokenAndAddLiquidityWithSignature
+    // const maxBorrowAmount = MAX;
+    // const calldataborrowHTokenAndAddLiquidityWithSignature = targetContract.interface.encodeFunctionData(
+    //   "borrowHTokenAndAddLiquidityWithSignature",
+    //   [balanceSheet, hifiPool, underlying, maxBorrowAmount, underlyingOffered, deadline, signatureUnderlying],
+    // );
 
-    console.log("calldataborrowHTokenAndAddLiquidityWithSignature", calldataborrowHTokenAndAddLiquidityWithSignature);
+    // console.log("calldataborrowHTokenAndAddLiquidityWithSignature", calldataborrowHTokenAndAddLiquidityWithSignature);
 
     // end
   });

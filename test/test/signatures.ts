@@ -16,10 +16,9 @@ export const SIGNATURE_TYPEHASH = keccak256(
   toUtf8Bytes("Signature(address user,address delegate,uint256 nonce,uint256 deadline)"),
 );
 
-export const PERMIT_TYPEHASH = "0xfc77c2b9d30fe91687fd39abb7d16fcdfe1472d065740051ab8b13e4bf4a617f";
-//keccak256(
-//   toUtf8Bytes("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"),
-// );
+export const PERMIT_TYPEHASH =
+  //"0xfc77c2b9d30fe91687fd39abb7d16fcdfe1472d065740051ab8b13e4bf4a617f";
+  keccak256(toUtf8Bytes("Permit(address owner,address spender,uint256 amount,uint256 nonce,uint256 deadline)"));
 export const DAI_TYPEHASH = "0xea2aa0a1be11a07ed86d755c93467f4f82362b452371d1ba94d1715123511acb";
 export const CHAI_SEPARATOR = "0x0b50407de9fa158c2cba01a99633329490dfd22989a150c20e8c7b4c1fb0fcc3";
 
