@@ -40,6 +40,4 @@ contract GodModeErc20Permit is Erc20, Erc20Permit {
     function __godMode_mint(address beneficiary, uint256 mintAmount) external {
         mintInternal(beneficiary, mintAmount);
     }
-    // test Merge pull request #<PR-ID> from hifi-finance/<TYPE>/<BRANCH-NAME>
-    // because I wanna see what is Squash and merge
 }
