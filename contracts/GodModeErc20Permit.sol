@@ -41,4 +41,5 @@ contract GodModeErc20Permit is Erc20, Erc20Permit {
         mintInternal(beneficiary, mintAmount);
     }
     // commit 1
+    // commit 2
 }
