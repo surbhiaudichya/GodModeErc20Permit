@@ -3,7 +3,7 @@ pragma solidity >=0.8.4;
 
 import "@paulrberg/contracts/token/erc20/Erc20Permit.sol";
 
-/// @title GodModeErc20
+/// @title GodModeErc20Permit
 /// @author surbhi
 /// @notice Allows anyone to mint or burn any amount of tokens to any account.
 /// @dev Strictly for test purposes.
