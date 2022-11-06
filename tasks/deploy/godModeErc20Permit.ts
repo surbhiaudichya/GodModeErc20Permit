@@ -1,6 +1,5 @@
 import { task } from "hardhat/config";
 import { TaskArguments } from "hardhat/types";
-
 import { GodModeErc20Permit } from "../../src/types/GodModeErc20Permit";
 import { GodModeErc20Permit__factory } from "../../src/types/factories/GodModeErc20Permit__factory";
 
@@ -16,5 +15,5 @@ task("deploy:GodModeErc20Permit")
       await godModeErc20PermitFactory.deploy(taskArguments.name, taskArguments.symbol, taskArguments.decimal)
     );
     await godModeErc20Permit.deployed();
-    console.log("GodModeErc20Permit deployed to: ", godModeErc20Permit.address);
+    console.log("GodModeErc20Permit deployed address: ", godModeErc20Permit.address);
   });
