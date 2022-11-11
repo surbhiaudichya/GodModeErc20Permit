@@ -6,5 +6,6 @@ task("accounts", "Prints the list of accounts", async (_taskArgs, hre) => {
 
   for (const account of accounts) {
     console.log(await account.getAddress());
+    console.log("done");
   }
 });

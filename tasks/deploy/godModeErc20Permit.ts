@@ -15,5 +15,5 @@ task("deploy:GodModeErc20Permit")
       await godModeErc20PermitFactory.deploy(taskArguments.name, taskArguments.symbol, taskArguments.decimal)
     );
     await godModeErc20Permit.deployed();
-    console.log("GodModeErc20Permit contract deployed address: ", godModeErc20Permit.address);
+    console.log("GodModeErc20Permit Address---: ", godModeErc20Permit.address);
   });
